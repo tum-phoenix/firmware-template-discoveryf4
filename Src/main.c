@@ -43,7 +43,7 @@
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "core/core.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -94,7 +94,7 @@ int main(void)
   MX_TIM5_Init();
 
   /* USER CODE BEGIN 2 */
-
+  core_setup();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -104,7 +104,7 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-
+  core_loop();
   }
   /* USER CODE END 3 */
 

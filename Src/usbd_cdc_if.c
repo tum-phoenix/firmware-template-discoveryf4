@@ -33,6 +33,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usbd_cdc_if.h"
 /* USER CODE BEGIN INCLUDE */
+void core_usb_callback(uint8_t* buffer, uint32_t length);
 /* USER CODE END INCLUDE */
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
@@ -59,8 +60,8 @@
 /* USER CODE BEGIN PRIVATE_DEFINES */
 /* Define size for the receive and transmit buffer over CDC */
 /* It's up to user to redefine and/or remove those define */
-#define APP_RX_DATA_SIZE  4
-#define APP_TX_DATA_SIZE  4
+#define APP_RX_DATA_SIZE  2048
+#define APP_TX_DATA_SIZE  2048
 /* USER CODE END PRIVATE_DEFINES */
 /**
   * @}
@@ -254,6 +255,7 @@ static int8_t CDC_Control_FS  (uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_FS (uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 6 */
+  core_usb_callback(Buf, *Len);
   USBD_CDC_SetRxBuffer(hUsbDevice_0, &Buf[0]);
   USBD_CDC_ReceivePacket(hUsbDevice_0);
   return (USBD_OK);
